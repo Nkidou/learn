@@ -1,1 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alphabet Arabe</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f5ec;
+      color: #222;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+    .alphabet {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .card {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .lettre {
+      font-size: 2.5rem;
+      color: #e74c3c;
+    }
+    .nom {
+      margin-top: 10px;
+      font-size: 1rem;
+      color: #333;
+    }
+    p {
+      margin-top: 40px;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>L'alphabet arabe</h1>
+  <div class="alphabet">
+    <div class="card" onclick="playSound('alif')"><div class="lettre">ا</div><div class="nom">Alif</div></div>
+    <div class="card" onclick="playSound('ba')"><div class="lettre">ب</div><div class="nom">Ba</div></div>
+    <div class="card" onclick="playSound('ta')"><div class="lettre">ت</div><div class="nom">Ta</div></div>
+    <div class="card" onclick="playSound('tha')"><div class="lettre">ث</div><div class="nom">Tha</div></div>
+    <div class="card" onclick="playSound('jim')"><div class="lettre">ج</div><div class="nom">Jim</div></div>
+    <div class="card" onclick="playSound('ha')"><div class="lettre">ح</div><div class="nom">Ha</div></div>
+    <div class="card" onclick="playSound('kha')"><div class="lettre">خ</div><div class="nom">Kha</div></div>
+    <div class="card" onclick="playSound('dal')"><div class="lettre">د</div><div class="nom">Dal</div></div>
+    <div class="card" onclick="playSound('thal')"><div class="lettre">ذ</div><div class="nom">Thal</div></div>
+    <div class="card" onclick="playSound('ra')"><div class="lettre">ر</div><div class="nom">Ra</div></div>
+    <div class="card" onclick="playSound('zay')"><div class="lettre">ز</div><div class="nom">Zay</div></div>
+    <div class="card" onclick="playSound('sin')"><div class="lettre">س</div><div class="nom">Sin</div></div>
+    <div class="card" onclick="playSound('shin')"><div class="lettre">ش</div><div class="nom">Shin</div></div>
+    <div class="card" onclick="playSound('sad')"><div class="lettre">ص</div><div class="nom">Sad</div></div>
+    <div class="card" onclick="playSound('dad')"><div class="lettre">ض</div><div class="nom">Dad</div></div>
+    <div class="card" onclick="playSound('ta2')"><div class="lettre">ط</div><div class="nom">Ta</div></div>
+    <div class="card" onclick="playSound('zha')"><div class="lettre">ظ</div><div class="nom">Zha</div></div>
+    <div class="card" onclick="playSound('ayn')"><div class="lettre">ع</div><div class="nom">Ayn</div></div>
+    <div class="card" onclick="playSound('ghayn')"><div class="lettre">غ</div><div class="nom">Ghayn</div></div>
+    <div class="card" onclick="playSound('fa')"><div class="lettre">ف</div><div class="nom">Fa</div></div>
+    <div class="card" onclick="playSound('qaf')"><div class="lettre">ق</div><div class="nom">Qaf</div></div>
+    <div class="card" onclick="playSound('kaf')"><div class="lettre">ك</div><div class="nom">Kaf</div></div>
+    <div class="card" onclick="playSound('lam')"><div class="lettre">ل</div><div class="nom">Lam</div></div>
+    <div class="card" onclick="playSound('mim')"><div class="lettre">م</div><div class="nom">Mim</div></div>
+    <div class="card" onclick="playSound('nun')"><div class="lettre">ن</div><div class="nom">Nun</div></div>
+    <div class="card" onclick="playSound('haa')"><div class="lettre">ه</div><div class="nom">Ha</div></div>
+    <div class="card" onclick="playSound('waw')"><div class="lettre">و</div><div class="nom">Waw</div></div>
+    <div class="card" onclick="playSound('ya')"><div class="lettre">ي</div><div class="nom">Ya</div></div>
+  </div>
+
+  <p>L'alphabet arabe comporte 28 lettres et se lit de droite à gauche</p>
+
+  <script>
+    function playSound(file) {
+      const audio = new Audio('sons/' + file + '.mp3');
+      audio.play();
+    }
+  </script>
+
+</body>
+</html>
 
