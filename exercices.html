@@ -3,62 +3,118 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exercices</title>
+  <title>Exercices d'arabe</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
       background-color: #1e1e1e;
       color: #fff;
+      font-family: 'Segoe UI', sans-serif;
       text-align: center;
+      margin: 0;
+      padding: 20px;
     }
 
     h1 {
       font-size: 3rem;
-      margin-top: 80px;
-      color: #fefefe;
+      margin-top: 40px;
     }
 
-    p {
-      font-size: 1.2rem;
-      margin-top: 30px;
-      color: #ccc;
+    .niveau {
+      background-color: #2a2a2a;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 700px;
+    }
+
+    h2 {
+      color: #f39c12;
+    }
+
+    .question {
+      margin: 20px 0;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      background-color: #444;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #666;
+    }
+
+    .correct {
+      background-color: #2ecc71 !important;
+    }
+
+    .incorrect {
+      background-color: #e74c3c !important;
     }
 
     a {
+      color: #fff;
       display: inline-block;
-      margin-top: 50px;
-      color: #ffffff;
+      margin-top: 40px;
       text-decoration: none;
-      font-size: 1rem;
       background-color: #444;
-      padding: 12px 20px;
+      padding: 10px 20px;
       border-radius: 10px;
-      transition: background 0.3s;
     }
 
     a:hover {
       background-color: #666;
     }
-
-    footer {
-      margin-top: 100px;
-      font-size: 0.85rem;
-      color: #aaa;
-    }
   </style>
 </head>
 <body>
 
-  <h1>✏️ Exercices</h1>
-  <p>Entraîne-toi à reconnaître les lettres avec des petits jeux et des quiz !</p>
+  <h1>✏️ Exercices d'arabe</h1>
+
+  <!-- Niveau 1 -->
+  <div class="niveau">
+    <h2>Niveau 1 : Facile</h2>
+    <p class="question">Quelle lettre est l'équivalent de la lettre "B" en arabe ?</p>
+    <button onclick="check(this, true)">ب</button>
+    <button onclick="check(this, false)">ت</button>
+    <button onclick="check(this, false)">ح</button>
+  </div>
+
+  <!-- Niveau 2 -->
+  <div class="niveau">
+    <h2>Niveau 2 : Moyen</h2>
+    <p class="question">Quel mot signifie "maison" ?</p>
+    <button onclick="check(this, true)">بيت</button>
+    <button onclick="check(this, false)">قمر</button>
+    <button onclick="check(this, false)">عين</button>
+  </div>
+
+  <!-- Niveau 3 -->
+  <div class="niveau">
+    <h2>Niveau 3 : Difficile</h2>
+    <p class="question">Quel mot contient la lettre غ (ghayn) ?</p>
+    <button onclick="check(this, false)">قلم</button>
+    <button onclick="check(this, true)">غابة</button>
+    <button onclick="check(this, false)">ماء</button>
+  </div>
 
   <a href="index.html">← Retour à l'accueil</a>
 
-  <footer>
-    © 2025 - Site éducatif par Nkidou
-  </footer>
+  <script>
+    function check(btn, isCorrect) {
+      btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+      setTimeout(() => {
+        btn.classList.remove('correct', 'incorrect');
+      }, 1000);
+    }
+  </script>
 
 </body>
 </html>
