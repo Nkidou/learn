@@ -6,53 +6,63 @@
   <title>Exercices d'arabe</title>
   <style>
     body {
-      background-color: #1e1e1e;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
       margin: 0;
       padding: 20px;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1e1e1e;
+      color: #fff;
+      text-align: center;
     }
 
     h1 {
-      font-size: 3rem;
-      margin-top: 40px;
+      font-size: 2.8rem;
+      margin-bottom: 40px;
     }
 
     .niveau {
-      background-color: #2a2a2a;
-      margin: 40px auto;
-      padding: 30px;
+      background-color: #2c2c2c;
       border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 40px;
       max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     h2 {
       color: #f39c12;
+      margin-bottom: 15px;
     }
 
     .question {
-      margin: 20px 0;
+      margin-bottom: 25px;
+      font-size: 1.2rem;
+    }
+
+    .reponses {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
     }
 
     button {
-      margin: 10px;
-      padding: 10px 20px;
+      padding: 12px 20px;
       font-size: 1rem;
       border: none;
       border-radius: 10px;
       background-color: #444;
       color: #fff;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background-color 0.3s ease;
     }
 
     button:hover {
-      background-color: #666;
+      background-color: #555;
     }
 
     .correct {
-      background-color: #2ecc71 !important;
+      background-color: #27ae60 !important;
     }
 
     .incorrect {
@@ -61,11 +71,11 @@
 
     a {
       color: #fff;
-      display: inline-block;
-      margin-top: 40px;
       text-decoration: none;
+      margin-top: 50px;
+      display: inline-block;
       background-color: #444;
-      padding: 10px 20px;
+      padding: 12px 20px;
       border-radius: 10px;
     }
 
@@ -78,40 +88,51 @@
 
   <h1>✏️ Exercices d'arabe</h1>
 
-  <!-- Niveau 1 -->
+  <!-- Niveau Facile -->
   <div class="niveau">
     <h2>Niveau 1 : Facile</h2>
-    <p class="question">Quelle lettre est l'équivalent de la lettre "B" en arabe ?</p>
-    <button onclick="check(this, true)">ب</button>
-    <button onclick="check(this, false)">ت</button>
-    <button onclick="check(this, false)">ح</button>
+    <p class="question">Quelle lettre correspond à la lettre "B" en arabe ?</p>
+    <div class="reponses">
+      <button onclick="check(this, true)">ب</button>
+      <button onclick="check(this, false)">ت</button>
+      <button onclick="check(this, false)">ن</button>
+    </div>
   </div>
 
-  <!-- Niveau 2 -->
+  <!-- Niveau Moyen -->
   <div class="niveau">
     <h2>Niveau 2 : Moyen</h2>
-    <p class="question">Quel mot signifie "maison" ?</p>
-    <button onclick="check(this, true)">بيت</button>
-    <button onclick="check(this, false)">قمر</button>
-    <button onclick="check(this, false)">عين</button>
+    <p class="question">Quel mot veut dire "lune" en arabe ?</p>
+    <div class="reponses">
+      <button onclick="check(this, false)">شمس</button>
+      <button onclick="check(this, true)">قمر</button>
+      <button onclick="check(this, false)">عين</button>
+    </div>
   </div>
 
-  <!-- Niveau 3 -->
+  <!-- Niveau Difficile -->
   <div class="niveau">
     <h2>Niveau 3 : Difficile</h2>
-    <p class="question">Quel mot contient la lettre غ (ghayn) ?</p>
-    <button onclick="check(this, false)">قلم</button>
-    <button onclick="check(this, true)">غابة</button>
-    <button onclick="check(this, false)">ماء</button>
+    <p class="question">Quel mot contient la lettre "غ" (ghayn) ?</p>
+    <div class="reponses">
+      <button onclick="check(this, true)">غابة</button>
+      <button onclick="check(this, false)">كتاب</button>
+      <button onclick="check(this, false)">ولد</button>
+    </div>
   </div>
 
   <a href="index.html">← Retour à l'accueil</a>
 
   <script>
-    function check(btn, isCorrect) {
-      btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+    function check(button, isCorrect) {
+      if (isCorrect) {
+        button.classList.add('correct');
+      } else {
+        button.classList.add('incorrect');
+      }
+
       setTimeout(() => {
-        btn.classList.remove('correct', 'incorrect');
+        button.classList.remove('correct', 'incorrect');
       }, 1000);
     }
   </script>
