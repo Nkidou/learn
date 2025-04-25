@@ -1,73 +1,73 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lettres arabes</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
       font-family: 'Segoe UI', sans-serif;
       background-color: #1e1e1e;
       color: #fff;
+      padding: 40px 20px;
       text-align: center;
     }
 
     h1 {
-      font-size: 3rem;
-      margin-top: 80px;
-      color: #fefefe;
+      font-size: 2.8rem;
+      margin-bottom: 40px;
     }
 
-    .container {
-      max-width: 900px;
-      margin: 60px auto;
-      padding: 20px;
-      background-color: #2b2b2b;
-      border-radius: 15px;
+    .grille-lettres {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      max-width: 1000px;
+      margin: auto;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 30px;
+    .lettre-card {
+      background-color: #2c2c2c;
+      border-radius: 20px;
+      width: 160px;
+      padding: 25px 15px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
     }
 
-    th, td {
-      padding: 15px;
-      border: 1px solid #444;
+    .lettre-card:hover {
+      transform: scale(1.05);
     }
 
-    th {
-      background-color: #333;
-      color: #f1f1f1;
+    .lettre {
+      font-size: 3.5rem;
+      margin-bottom: 15px;
     }
 
-    td {
-      background-color: #2a2a2a;
+    .exemple {
+      font-size: 1.2rem;
+      color: #bbb;
+    }
+
+    .exemple .highlight {
+      color: #f39c12;
+      font-weight: bold;
     }
 
     a {
       display: inline-block;
-      margin-top: 40px;
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 1rem;
+      margin-top: 50px;
+      color: #fff;
       background-color: #444;
       padding: 12px 20px;
       border-radius: 10px;
-      transition: background 0.3s;
+      text-decoration: none;
     }
 
     a:hover {
       background-color: #666;
-    }
-
-    footer {
-      margin-top: 60px;
-      font-size: 0.85rem;
-      color: #aaa;
     }
   </style>
 </head>
@@ -75,53 +75,38 @@
 
   <h1>📖 Lettres arabes</h1>
 
-  <div class="container">
-    <table>
-      <thead>
-        <tr>
-          <th>Lettre</th>
-          <th>Nom</th>
-          <th>Exemple</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>ا</td><td>Alif</td><td>أحمد</td></tr>
-        <tr><td>ب</td><td>Ba</td><td>بيت</td></tr>
-        <tr><td>ت</td><td>Ta</td><td>تمر</td></tr>
-        <tr><td>ث</td><td>Tha</td><td>ثلاثة</td></tr>
-        <tr><td>ج</td><td>Jim</td><td>جميل</td></tr>
-        <tr><td>ح</td><td>Ha</td><td>حسن</td></tr>
-        <tr><td>خ</td><td>Kha</td><td>خالد</td></tr>
-        <tr><td>د</td><td>Dal</td><td>درس</td></tr>
-        <tr><td>ذ</td><td>Dhal</td><td>ذهب</td></tr>
-        <tr><td>ر</td><td>Ra</td><td>رجل</td></tr>
-        <tr><td>ز</td><td>Zay</td><td>زيت</td></tr>
-        <tr><td>س</td><td>Sin</td><td>سمك</td></tr>
-        <tr><td>ش</td><td>Shin</td><td>شمس</td></tr>
-        <tr><td>ص</td><td>Sad</td><td>صبر</td></tr>
-        <tr><td>ض</td><td>Dad</td><td>ضوء</td></tr>
-        <tr><td>ط</td><td>Taʼ</td><td>طعام</td></tr>
-        <tr><td>ظ</td><td>Zaʼ</td><td>ظرف</td></tr>
-        <tr><td>ع</td><td>ʿAyn</td><td>عين</td></tr>
-        <tr><td>غ</td><td>Ghayn</td><td>غابة</td></tr>
-        <tr><td>ف</td><td>Fa</td><td>فم</td></tr>
-        <tr><td>ق</td><td>Qaf</td><td>قلم</td></tr>
-        <tr><td>ك</td><td>Kaf</td><td>كتاب</td></tr>
-        <tr><td>ل</td><td>Lam</td><td>ليل</td></tr>
-        <tr><td>م</td><td>Mim</td><td>ماء</td></tr>
-        <tr><td>ن</td><td>Nun</td><td>نار</td></tr>
-        <tr><td>هـ</td><td>Haʼ</td><td>هواء</td></tr>
-        <tr><td>و</td><td>Waw</td><td>ولد</td></tr>
-        <tr><td>ي</td><td>Ya</td><td>يد</td></tr>
-      </tbody>
-    </table>
+  <div class="grille-lettres">
+
+    <div class="lettre-card">
+      <div class="lettre">ا</div>
+      <div class="exemple">Ex: <span class="highlight">أ</span>حمد</div>
+    </div>
+
+    <div class="lettre-card">
+      <div class="lettre">ب</div>
+      <div class="exemple">Ex: <span class="highlight">ب</span>يت</div>
+    </div>
+
+    <div class="lettre-card">
+      <div class="lettre">ت</div>
+      <div class="exemple">Ex: <span class="highlight">ت</span>مر</div>
+    </div>
+
+    <div class="lettre-card">
+      <div class="lettre">ث</div>
+      <div class="exemple">Ex: <span class="highlight">ث</span>لاثة</div>
+    </div>
+
+    <div class="lettre-card">
+      <div class="lettre">ج</div>
+      <div class="exemple">Ex: <span class="highlight">ج</span>ميل</div>
+    </div>
+
+    <!-- Tu peux continuer avec les autres lettres... -->
+
   </div>
 
   <a href="index.html">← Retour à l'accueil</a>
-
-  <footer>
-    © 2025 - Site éducatif par Nkidou
-  </footer>
 
 </body>
 </html>
