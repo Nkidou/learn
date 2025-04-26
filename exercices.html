@@ -1,142 +1,150 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exercices d'arabe</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 20px;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #1e1e1e;
-      color: #fff;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 2.8rem;
-      margin-bottom: 40px;
-    }
-
-    .niveau {
-      background-color: #2c2c2c;
-      border-radius: 20px;
-      padding: 30px;
-      margin-bottom: 40px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    h2 {
-      color: #f39c12;
-      margin-bottom: 15px;
-    }
-
-    .question {
-      margin-bottom: 25px;
-      font-size: 1.2rem;
-    }
-
-    .reponses {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    button {
-      padding: 12px 20px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 10px;
-      background-color: #444;
-      color: #fff;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #555;
-    }
-
-    .correct {
-      background-color: #27ae60 !important;
-    }
-
-    .incorrect {
-      background-color: #e74c3c !important;
-    }
-
-    a {
-      color: #fff;
-      text-decoration: none;
-      margin-top: 50px;
-      display: inline-block;
-      background-color: #444;
-      padding: 12px 20px;
-      border-radius: 10px;
-    }
-
-    a:hover {
-      background-color: #666;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exercices d'Arabe</title>
+<style>
+  body {
+    background-color: #1e1e1e;
+    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    padding: 20px;
+  }
+  h1 {
+    margin-bottom: 20px;
+  }
+  .niveau-btn, .rejouer-btn {
+    margin: 10px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background-color: #444;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .niveau-btn:hover, .rejouer-btn:hover {
+    background-color: #666;
+  }
+  .question, .resultat {
+    margin-top: 40px;
+    font-size: 1.5rem;
+  }
+  .options {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .option-btn {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #333;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    transition: background 0.3s;
+  }
+  .option-btn:hover {
+    background-color: #555;
+  }
+</style>
 </head>
 <body>
 
-  <h1>✏️ Exercices d'arabe</h1>
+<h1>Exercices d'Arabe</h1>
+<div id="menu">
+  <button class="niveau-btn" onclick="startGame('facile')">Niveau Facile</button>
+  <button class="niveau-btn" onclick="startGame('moyen')">Niveau Intermédiaire</button>
+  <button class="niveau-btn" onclick="startGame('difficile')">Niveau Difficile</button>
+</div>
 
-  <!-- Niveau Facile -->
-  <div class="niveau">
-    <h2>Niveau 1 : Facile</h2>
-    <p class="question">Quelle lettre correspond à la lettre "B" en arabe ?</p>
-    <div class="reponses">
-      <button onclick="check(this, true)">ب</button>
-      <button onclick="check(this, false)">ت</button>
-      <button onclick="check(this, false)">ن</button>
-    </div>
-  </div>
+<div id="jeu" style="display:none;">
+  <div class="question" id="question"></div>
+  <div class="options" id="options"></div>
+  <div class="resultat" id="resultat"></div>
+</div>
 
-  <!-- Niveau Moyen -->
-  <div class="niveau">
-    <h2>Niveau 2 : Moyen</h2>
-    <p class="question">Quel mot veut dire "lune" en arabe ?</p>
-    <div class="reponses">
-      <button onclick="check(this, false)">شمس</button>
-      <button onclick="check(this, true)">قمر</button>
-      <button onclick="check(this, false)">عين</button>
-    </div>
-  </div>
+<div id="fin" style="display:none;">
+  <h2 id="score"></h2>
+  <button class="rejouer-btn" onclick="location.reload()">Retour au Menu</button>
+</div>
 
-  <!-- Niveau Difficile -->
-  <div class="niveau">
-    <h2>Niveau 3 : Difficile</h2>
-    <p class="question">Quel mot contient la lettre "غ" (ghayn) ?</p>
-    <div class="reponses">
-      <button onclick="check(this, true)">غابة</button>
-      <button onclick="check(this, false)">كتاب</button>
-      <button onclick="check(this, false)">ولد</button>
-    </div>
-  </div>
+<script>
+const lettres = ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ك', 'ل', 'م', 'ن', 'هـ', 'و', 'ي'];
+let niveau = '';
+let questions = [];
+let index = 0;
+let bonnesReponses = 0;
 
-  <a href="index.html">← Retour à l'accueil</a>
+function startGame(selectedNiveau) {
+  niveau = selectedNiveau;
+  document.getElementById('menu').style.display = 'none';
+  document.getElementById('jeu').style.display = 'block';
+  genererQuestions();
+  afficherQuestion();
+}
 
-  <script>
-    function check(button, isCorrect) {
-      if (isCorrect) {
-        button.classList.add('correct');
-      } else {
-        button.classList.add('incorrect');
-      }
+function genererQuestions() {
+  let copyLettres = [...lettres];
+  for (let i = 0; i < 8; i++) {
+    const lettre = copyLettres.splice(Math.floor(Math.random() * copyLettres.length), 1)[0];
+    questions.push(lettre);
+  }
+}
 
-      setTimeout(() => {
-        button.classList.remove('correct', 'incorrect');
-      }, 1000);
-    }
-  </script>
+function afficherQuestion() {
+  if (index >= questions.length) {
+    afficherScore();
+    return;
+  }
+  document.getElementById('resultat').innerText = '';
+  const question = questions[index];
+  document.getElementById('question').innerText = `Trouve la lettre : ${question}`;
+
+  const options = genererOptions(question);
+  document.getElementById('options').innerHTML = '';
+  options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.innerText = opt;
+    btn.className = 'option-btn';
+    btn.onclick = () => verifierReponse(opt, question);
+    document.getElementById('options').appendChild(btn);
+  });
+}
+
+function genererOptions(correct) {
+  let opts = [correct];
+  let lettresRestantes = lettres.filter(l => l !== correct);
+  while (opts.length < 4) {
+    const random = lettresRestantes.splice(Math.floor(Math.random() * lettresRestantes.length), 1)[0];
+    opts.push(random);
+  }
+  return opts.sort(() => Math.random() - 0.5);
+}
+
+function verifierReponse(selected, correct) {
+  if (selected === correct) {
+    bonnesReponses++;
+    document.getElementById('resultat').innerText = '✅ Correct !';
+  } else {
+    document.getElementById('resultat').innerText = '❌ Incorrect !';
+  }
+  index++;
+  setTimeout(afficherQuestion, 1000);
+}
+
+function afficherScore() {
+  document.getElementById('jeu').style.display = 'none';
+  document.getElementById('fin').style.display = 'block';
+  document.getElementById('score').innerText = `Ton score : ${bonnesReponses} / 8`;
+}
+</script>
 
 </body>
 </html>
-
