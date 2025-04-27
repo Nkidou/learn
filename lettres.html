@@ -12,6 +12,7 @@
     margin: 0;
     padding: 20px;
     color: #222;
+    position: relative;
   }
   h1 {
     margin-bottom: 20px;
@@ -61,7 +62,7 @@
     background-color: #fff;
     border-radius: 10px;
     overflow: hidden;
-    direction: rtl; /* Très important pour inverser */
+    direction: rtl;
   }
   th, td {
     padding: 15px;
@@ -71,22 +72,33 @@
   th {
     background-color: #eee;
   }
+  .fatha {
+    color: red;
+  }
+  .damma {
+    color: blue;
+  }
+  .kasra {
+    color: green;
+  }
   .navigation {
-    margin-top: 40px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: space-between;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 0 20px;
+    transform: translateY(-50%);
   }
   .nav-btn {
     background-color: #444;
     color: #fff;
     border: none;
     padding: 10px 20px;
-    border-radius: 10px;
+    border-radius: 50%;
+    font-size: 2rem;
     cursor: pointer;
-    font-size: 1.2rem;
     transition: background-color 0.3s;
   }
   .nav-btn:hover {
@@ -100,6 +112,7 @@
 
 <div id="alphabet" class="section active">
   <div class="alphabet">
+    <!-- lettres avec sons -->
     <div class="card" onclick="playSound('alif')"><div class="lettre">ا</div><div class="nom">Alif</div></div>
     <div class="card" onclick="playSound('ba')"><div class="lettre">ب</div><div class="nom">Ba</div></div>
     <div class="card" onclick="playSound('ta')"><div class="lettre">ت</div><div class="nom">Ta</div></div>
@@ -135,22 +148,21 @@
   <table>
     <thead>
       <tr>
-        <th>Lettre</th><th>Fatha (َ)</th><th>Damma (ُ)</th><th>Kasra (ِ)</th>
+        <th>Lettre</th><th class="fatha">Fatha (َ)</th><th class="damma">Damma (ُ)</th><th class="kasra">Kasra (ِ)</th>
       </tr>
     </thead>
     <tbody>
-      <!-- Ici on met toutes les voyelles par lettre -->
-      <tr><td>ا</td><td>أَ</td><td>أُ</td><td>إِ</td></tr>
-      <tr><td>ب</td><td>بَ</td><td>بُ</td><td>بِ</td></tr>
-      <tr><td>ت</td><td>تَ</td><td>تُ</td><td>تِ</td></tr>
-      <!-- etc. continue tout ton tableau... -->
+      <tr><td>ا</td><td class="fatha">أَ</td><td class="damma">أُ</td><td class="kasra">إِ</td></tr>
+      <tr><td>ب</td><td class="fatha">بَ</td><td class="damma">بُ</td><td class="kasra">بِ</td></tr>
+      <tr><td>ت</td><td class="fatha">تَ</td><td class="damma">تُ</td><td class="kasra">تِ</td></tr>
+      <!-- Continue pour toutes les lettres -->
     </tbody>
   </table>
 </div>
 
 <div class="navigation">
-  <button class="nav-btn" onclick="changerSection(-1)">⬅️</button>
-  <button class="nav-btn" onclick="changerSection(1)">➡️</button>
+  <button class="nav-btn" onclick="changerSection(-1)">&lt;</button>
+  <button class="nav-btn" onclick="changerSection(1)">&gt;</button>
 </div>
 
 <script>
