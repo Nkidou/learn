@@ -1,58 +1,104 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alphabet Arabe</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 40px 20px;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f9f5ec;
-      color: #222;
-      text-align: center;
-    }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 30px;
-    }
-    .alphabet {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-      gap: 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .card {
-      background-color: #fff;
-      border-radius: 10px;
-      padding: 20px 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-    .card:hover {
-      transform: scale(1.05);
-    }
-    .lettre {
-      font-size: 2.5rem;
-      color: #e74c3c;
-    }
-    .nom {
-      margin-top: 10px;
-      font-size: 1rem;
-      color: #333;
-    }
-    p {
-      margin-top: 40px;
-      font-size: 1rem;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alphabet et Voyelles</title>
+<style>
+  body {
+    background-color: #f9f5ec;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    color: #222;
+  }
+  h1 {
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+  }
+  .section {
+    display: none;
+  }
+  .active {
+    display: block;
+    animation: fade 0.5s;
+  }
+  @keyframes fade {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  .alphabet, .voyelles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .card:hover {
+    transform: scale(1.05);
+  }
+  .lettre {
+    font-size: 2.5rem;
+    color: #e74c3c;
+  }
+  .nom {
+    margin-top: 10px;
+    font-size: 1rem;
+  }
+  table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    direction: rtl; /* Très important pour inverser */
+  }
+  th, td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    font-size: 1.2rem;
+  }
+  th {
+    background-color: #eee;
+  }
+  .navigation {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .nav-btn {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
+  }
+  .nav-btn:hover {
+    background-color: #666;
+  }
+</style>
 </head>
 <body>
 
-  <h1>L'alphabet arabe</h1>
+<h1 id="titre">Alphabet Arabe</h1>
+
+<div id="alphabet" class="section active">
   <div class="alphabet">
     <div class="card" onclick="playSound('alif')"><div class="lettre">ا</div><div class="nom">Alif</div></div>
     <div class="card" onclick="playSound('ba')"><div class="lettre">ب</div><div class="nom">Ba</div></div>
@@ -69,7 +115,7 @@
     <div class="card" onclick="playSound('shin')"><div class="lettre">ش</div><div class="nom">Shin</div></div>
     <div class="card" onclick="playSound('sad')"><div class="lettre">ص</div><div class="nom">Sad</div></div>
     <div class="card" onclick="playSound('dad')"><div class="lettre">ض</div><div class="nom">Dad</div></div>
-    <div class="card" onclick="playSound('ta2')"><div class="lettre">ط</div><div class="nom">Ta</div></div>
+    <div class="card" onclick="playSound('taa')"><div class="lettre">ط</div><div class="nom">Taa</div></div>
     <div class="card" onclick="playSound('zha')"><div class="lettre">ظ</div><div class="nom">Zha</div></div>
     <div class="card" onclick="playSound('ayn')"><div class="lettre">ع</div><div class="nom">Ayn</div></div>
     <div class="card" onclick="playSound('ghayn')"><div class="lettre">غ</div><div class="nom">Ghayn</div></div>
@@ -79,19 +125,51 @@
     <div class="card" onclick="playSound('lam')"><div class="lettre">ل</div><div class="nom">Lam</div></div>
     <div class="card" onclick="playSound('mim')"><div class="lettre">م</div><div class="nom">Mim</div></div>
     <div class="card" onclick="playSound('nun')"><div class="lettre">ن</div><div class="nom">Nun</div></div>
-    <div class="card" onclick="playSound('haa')"><div class="lettre">ه</div><div class="nom">Ha</div></div>
+    <div class="card" onclick="playSound('ha2')"><div class="lettre">ه</div><div class="nom">Ha</div></div>
     <div class="card" onclick="playSound('waw')"><div class="lettre">و</div><div class="nom">Waw</div></div>
     <div class="card" onclick="playSound('ya')"><div class="lettre">ي</div><div class="nom">Ya</div></div>
   </div>
+</div>
 
-  <p>L'alphabet arabe comporte 28 lettres et se lit de droite à gauche</p>
+<div id="voyelles" class="section">
+  <table>
+    <thead>
+      <tr>
+        <th>Lettre</th><th>Fatha (َ)</th><th>Damma (ُ)</th><th>Kasra (ِ)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Ici on met toutes les voyelles par lettre -->
+      <tr><td>ا</td><td>أَ</td><td>أُ</td><td>إِ</td></tr>
+      <tr><td>ب</td><td>بَ</td><td>بُ</td><td>بِ</td></tr>
+      <tr><td>ت</td><td>تَ</td><td>تُ</td><td>تِ</td></tr>
+      <!-- etc. continue tout ton tableau... -->
+    </tbody>
+  </table>
+</div>
 
-  <script>
-    function playSound(file) {
-      const audio = new Audio('sons/' + file + '.mp3');
-      audio.play();
-    }
-  </script>
+<div class="navigation">
+  <button class="nav-btn" onclick="changerSection(-1)">⬅️</button>
+  <button class="nav-btn" onclick="changerSection(1)">➡️</button>
+</div>
+
+<script>
+let page = 0;
+const sections = ['alphabet', 'voyelles'];
+const titres = ['Alphabet Arabe', 'Voyelles en Arabe'];
+
+function changerSection(direction) {
+  document.getElementById(sections[page]).classList.remove('active');
+  page = (page + direction + sections.length) % sections.length;
+  document.getElementById(sections[page]).classList.add('active');
+  document.getElementById('titre').innerText = titres[page];
+}
+
+function playSound(lettre) {
+  const audio = new Audio(`sons/${lettre}.mp3`);
+  audio.play();
+}
+</script>
 
 </body>
 </html>
