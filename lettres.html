@@ -104,6 +104,37 @@
   .nav-btn:hover {
     background-color: #666;
   }
+.voyelles .card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.voyelles .card:hover {
+  transform: scale(1.05);
+}
+
+.voyelles .lettre {
+  font-size: 4rem;
+}
+
+.voyelles .fatha {
+  color: red;
+}
+
+.voyelles .damma {
+  color: blue;
+}
+
+.voyelles .kasra {
+  color: green;
+}
 </style>
 </head>
 <body>
@@ -143,48 +174,41 @@
     <div class="card" onclick="playSound('ya')"><div class="lettre">ي</div><div class="nom">Ya</div></div>
   </div>
 </div>
-
 <div id="voyelles" class="section">
-  <table>
-    <thead>
-      <tr>
-        <th>Lettre</th><th class="fatha">Fatha (َ)</th><th class="damma">Damma (ُ)</th><th class="kasra">Kasra (ِ)</th>
-      </tr>
-    </thead>
-    <tbody>
-  <tr><td>ا</td><td class="fatha">اَ</td><td class="damma">اُ</td><td class="kasra">اِ</td></tr>
-  <tr><td>ب</td><td class="fatha">بَ</td><td class="damma">بُ</td><td class="kasra">بِ</td></tr>
-  <tr><td>ت</td><td class="fatha">تَ</td><td class="damma">تُ</td><td class="kasra">تِ</td></tr>
-  <tr><td>ث</td><td class="fatha">ثَ</td><td class="damma">ثُ</td><td class="kasra">ثِ</td></tr>
-  <tr><td>ج</td><td class="fatha">جَ</td><td class="damma">جُ</td><td class="kasra">جِ</td></tr>
-  <tr><td>ح</td><td class="fatha">حَ</td><td class="damma">حُ</td><td class="kasra">حِ</td></tr>
-  <tr><td>خ</td><td class="fatha">خَ</td><td class="damma">خُ</td><td class="kasra">خِ</td></tr>
-  <tr><td>د</td><td class="fatha">دَ</td><td class="damma">دُ</td><td class="kasra">دِ</td></tr>
-  <tr><td>ذ</td><td class="fatha">ذَ</td><td class="damma">ذُ</td><td class="kasra">ذِ</td></tr>
-  <tr><td>ر</td><td class="fatha">رَ</td><td class="damma">رُ</td><td class="kasra">رِ</td></tr>
-  <tr><td>ز</td><td class="fatha">زَ</td><td class="damma">زُ</td><td class="kasra">زِ</td></tr>
-  <tr><td>س</td><td class="fatha">سَ</td><td class="damma">سُ</td><td class="kasra">سِ</td></tr>
-  <tr><td>ش</td><td class="fatha">شَ</td><td class="damma">شُ</td><td class="kasra">شِ</td></tr>
-  <tr><td>ص</td><td class="fatha">صَ</td><td class="damma">صُ</td><td class="kasra">صِ</td></tr>
-  <tr><td>ض</td><td class="fatha">ضَ</td><td class="damma">ضُ</td><td class="kasra">ضِ</td></tr>
-  <tr><td>ط</td><td class="fatha">طَ</td><td class="damma">طُ</td><td class="kasra">طِ</td></tr>
-  <tr><td>ظ</td><td class="fatha">ظَ</td><td class="damma">ظُ</td><td class="kasra">ظِ</td></tr>
-  <tr><td>ع</td><td class="fatha">عَ</td><td class="damma">عُ</td><td class="kasra">عِ</td></tr>
-  <tr><td>غ</td><td class="fatha">غَ</td><td class="damma">غُ</td><td class="kasra">غِ</td></tr>
-  <tr><td>ف</td><td class="fatha">فَ</td><td class="damma">فُ</td><td class="kasra">فِ</td></tr>
-  <tr><td>ق</td><td class="fatha">قَ</td><td class="damma">قُ</td><td class="kasra">قِ</td></tr>
-  <tr><td>ك</td><td class="fatha">كَ</td><td class="damma">كُ</td><td class="kasra">كِ</td></tr>
-  <tr><td>ل</td><td class="fatha">لَ</td><td class="damma">لُ</td><td class="kasra">لِ</td></tr>
-  <tr><td>م</td><td class="fatha">مَ</td><td class="damma">مُ</td><td class="kasra">مِ</td></tr>
-  <tr><td>ن</td><td class="fatha">نَ</td><td class="damma">نُ</td><td class="kasra">نِ</td></tr>
-  <tr><td>ه</td><td class="fatha">هَ</td><td class="damma">هُ</td><td class="kasra">هِ</td></tr>
-  <tr><td>و</td><td class="fatha">وَ</td><td class="damma">وُ</td><td class="kasra">وِ</td></tr>
-  <tr><td>ي</td><td class="fatha">يَ</td><td class="damma">يُ</td><td class="kasra">يِ</td></tr>
-</tbody>
-  </table>
+  <div class="alphabet">
+    <div class="card"><div class="lettre"><span class="fatha">اَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">بَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">تَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">ثَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">جَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">حَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">خَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">دَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">ذَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">رَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">زَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">سَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">شَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">صَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">ضَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">طَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">ظَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">عَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">غَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">فَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">قَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">كَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">لَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">مَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">نَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">هَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">وَ</span></div></div>
+    <div class="card"><div class="lettre"><span class="fatha">يَ</span></div></div>
+  </div>
 </div>
 
-<div class="navigation">
+  
+  <div class="navigation">
   <button class="nav-btn" onclick="changerSection(-1)">&lt;</button>
   <button class="nav-btn" onclick="changerSection(1)">&gt;</button>
 </div>
