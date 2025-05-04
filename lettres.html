@@ -352,6 +352,21 @@
   <button class="nav-btn" onclick="changerSection(-1)">&lt;</button>
   <button class="nav-btn" onclick="changerSection(1)">&gt;</button>
 </div>
+<div style="position: fixed; right: 10px; top: 50%; transform: translateY(-50%); z-index: 999;">
+  <button onclick="changerSection(1)" style="
+    background-color: #e74c3c;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.3s;">
+    ➤
+  </button>
+</div>
 
 <script>
 let page = 0;
