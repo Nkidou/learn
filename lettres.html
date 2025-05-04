@@ -1,390 +1,197 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alphabet et Voyelles</title>
-<style>
-  body {
-    background-color: #f9f5ec;
-    font-family: 'Segoe UI', sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 20px;
-    color: #222;
-    position: relative;
-  }
-  h1 {
-    margin-bottom: 20px;
-    font-size: 2.5rem;
-  }
-  .section {
-    display: none;
-  }
-  .active {
-    display: block;
-    animation: fade 0.5s;
-  }
-  @keyframes fade {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-  .alphabet, .voyelles {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 20px;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  .card {
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-  .card:hover {
-    transform: scale(1.05);
-  }
-  .lettre {
-    font-size: 2.5rem;
-    color: #e74c3c;
-  }
-  .nom {
-    margin-top: 10px;
-    font-size: 1rem;
-  }
-  table {
-    width: 90%;
-    margin: 20px auto;
-    border-collapse: collapse;
-    background-color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    direction: rtl;
-  }
-  th, td {
-    padding: 15px;
-    border: 1px solid #ddd;
-    font-size: 1.2rem;
-  }
-  th {
-    background-color: #eee;
-  }
-  .fatha {
-    color: red;
-  }
-  .damma {
-    color: blue;
-  }
-  .kasra {
-    color: green;
-  }
-  .navigation {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
-    transform: translateY(-50%);
-  }
-  .nav-btn {
-    background-color: #444;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 50%;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  .nav-btn:hover {
-    background-color: #666;
-  }
-.voyelles .card {
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 30px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  font-size: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.2s;
-}
-
-.voyelles .card:hover {
-  transform: scale(1.05);
-}
-
-.voyelles .lettre {
-  font-size: 4rem;
-}
-
-.voyelles .fatha {
-  color: red;
-}
-
-.voyelles .damma {
-  color: blue;
-}
-
-.voyelles .kasra {
-  color: green;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alphabet et Voyelles</title>
+  <style>
+    body {
+      background-color: #f9f5ec;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+      color: #222;
+      position: relative;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2.5rem;
+    }
+    .section {
+      display: none;
+    }
+    .active {
+      display: block;
+      animation: fade 0.5s;
+    }
+    @keyframes fade {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    .alphabet, .voyelles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .card {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .lettre {
+      font-size: 2.5rem;
+      color: #e74c3c;
+    }
+    .nom {
+      margin-top: 10px;
+      font-size: 1rem;
+    }
+    .fatha {
+      color: red;
+    }
+    .damma {
+      color: blue;
+    }
+    .kasra {
+      color: green;
+    }
+    .navigation {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      transform: translateY(-50%);
+    }
+    .nav-btn {
+      background-color: #444;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50%;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .nav-btn:hover {
+      background-color: #666;
+    }
+    .voyelles .card {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      font-size: 3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.2s;
+    }
+    .voyelles .card:hover {
+      transform: scale(1.05);
+    }
+    .voyelles .lettre {
+      font-size: 4rem;
+    }
+  </style>
 </head>
 <body>
+  <h1 id="titre">Alphabet Arabe</h1>
 
-<h1 id="titre">Alphabet Arabe</h1>
+  <div id="alphabet" class="section active">
+    <div class="alphabet">
+      <div class="card" onclick="playSound('alif')"><div class="lettre">ا</div><div class="nom">Alif</div></div>
+      <div class="card" onclick="playSound('ba')"><div class="lettre">ب</div><div class="nom">Ba</div></div>
+      <div class="card" onclick="playSound('ta')"><div class="lettre">ت</div><div class="nom">Ta</div></div>
+      <div class="card" onclick="playSound('tha')"><div class="lettre">ث</div><div class="nom">Tha</div></div>
+      <div class="card" onclick="playSound('jim')"><div class="lettre">ج</div><div class="nom">Jim</div></div>
+      <div class="card" onclick="playSound('ha')"><div class="lettre">ح</div><div class="nom">Ha</div></div>
+      <div class="card" onclick="playSound('kha')"><div class="lettre">خ</div><div class="nom">Kha</div></div>
+      <div class="card" onclick="playSound('dal')"><div class="lettre">د</div><div class="nom">Dal</div></div>
+      <div class="card" onclick="playSound('thal')"><div class="lettre">ذ</div><div class="nom">Thal</div></div>
+      <div class="card" onclick="playSound('ra')"><div class="lettre">ر</div><div class="nom">Ra</div></div>
+      <div class="card" onclick="playSound('zay')"><div class="lettre">ز</div><div class="nom">Zay</div></div>
+      <div class="card" onclick="playSound('sin')"><div class="lettre">س</div><div class="nom">Sin</div></div>
+      <div class="card" onclick="playSound('shin')"><div class="lettre">ش</div><div class="nom">Shin</div></div>
+      <div class="card" onclick="playSound('sad')"><div class="lettre">ص</div><div class="nom">Sad</div></div>
+      <div class="card" onclick="playSound('dad')"><div class="lettre">ض</div><div class="nom">Dad</div></div>
+      <div class="card" onclick="playSound('taa')"><div class="lettre">ط</div><div class="nom">Taa</div></div>
+      <div class="card" onclick="playSound('zha')"><div class="lettre">ظ</div><div class="nom">Zha</div></div>
+      <div class="card" onclick="playSound('ayn')"><div class="lettre">ع</div><div class="nom">Ayn</div></div>
+      <div class="card" onclick="playSound('ghayn')"><div class="lettre">غ</div><div class="nom">Ghayn</div></div>
+      <div class="card" onclick="playSound('fa')"><div class="lettre">ف</div><div class="nom">Fa</div></div>
+      <div class="card" onclick="playSound('qaf')"><div class="lettre">ق</div><div class="nom">Qaf</div></div>
+      <div class="card" onclick="playSound('kaf')"><div class="lettre">ك</div><div class="nom">Kaf</div></div>
+      <div class="card" onclick="playSound('lam')"><div class="lettre">ل</div><div class="nom">Lam</div></div>
+      <div class="card" onclick="playSound('mim')"><div class="lettre">م</div><div class="nom">Mim</div></div>
+      <div class="card" onclick="playSound('nun')"><div class="lettre">ن</div><div class="nom">Nun</div></div>
+      <div class="card" onclick="playSound('ha2')"><div class="lettre">ه</div><div class="nom">Ha</div></div>
+      <div class="card" onclick="playSound('waw')"><div class="lettre">و</div><div class="nom">Waw</div></div>
+      <div class="card" onclick="playSound('ya')"><div class="lettre">ي</div><div class="nom">Ya</div></div>
+    </div>
 
-<div id="alphabet" class="section active">
-  <div class="alphabet">
-    <!-- lettres avec sons -->
-    <div class="card" onclick="playSound('alif')"><div class="lettre">ا</div><div class="nom">Alif</div></div>
-    <div class="card" onclick="playSound('ba')"><div class="lettre">ب</div><div class="nom">Ba</div></div>
-    <div class="card" onclick="playSound('ta')"><div class="lettre">ت</div><div class="nom">Ta</div></div>
-    <div class="card" onclick="playSound('tha')"><div class="lettre">ث</div><div class="nom">Tha</div></div>
-    <div class="card" onclick="playSound('jim')"><div class="lettre">ج</div><div class="nom">Jim</div></div>
-    <div class="card" onclick="playSound('ha')"><div class="lettre">ح</div><div class="nom">Ha</div></div>
-    <div class="card" onclick="playSound('kha')"><div class="lettre">خ</div><div class="nom">Kha</div></div>
-    <div class="card" onclick="playSound('dal')"><div class="lettre">د</div><div class="nom">Dal</div></div>
-    <div class="card" onclick="playSound('thal')"><div class="lettre">ذ</div><div class="nom">Thal</div></div>
-    <div class="card" onclick="playSound('ra')"><div class="lettre">ر</div><div class="nom">Ra</div></div>
-    <div class="card" onclick="playSound('zay')"><div class="lettre">ز</div><div class="nom">Zay</div></div>
-    <div class="card" onclick="playSound('sin')"><div class="lettre">س</div><div class="nom">Sin</div></div>
-    <div class="card" onclick="playSound('shin')"><div class="lettre">ش</div><div class="nom">Shin</div></div>
-    <div class="card" onclick="playSound('sad')"><div class="lettre">ص</div><div class="nom">Sad</div></div>
-    <div class="card" onclick="playSound('dad')"><div class="lettre">ض</div><div class="nom">Dad</div></div>
-    <div class="card" onclick="playSound('taa')"><div class="lettre">ط</div><div class="nom">Taa</div></div>
-    <div class="card" onclick="playSound('zha')"><div class="lettre">ظ</div><div class="nom">Zha</div></div>
-    <div class="card" onclick="playSound('ayn')"><div class="lettre">ع</div><div class="nom">Ayn</div></div>
-    <div class="card" onclick="playSound('ghayn')"><div class="lettre">غ</div><div class="nom">Ghayn</div></div>
-    <div class="card" onclick="playSound('fa')"><div class="lettre">ف</div><div class="nom">Fa</div></div>
-    <div class="card" onclick="playSound('qaf')"><div class="lettre">ق</div><div class="nom">Qaf</div></div>
-    <div class="card" onclick="playSound('kaf')"><div class="lettre">ك</div><div class="nom">Kaf</div></div>
-    <div class="card" onclick="playSound('lam')"><div class="lettre">ل</div><div class="nom">Lam</div></div>
-    <div class="card" onclick="playSound('mim')"><div class="lettre">م</div><div class="nom">Mim</div></div>
-    <div class="card" onclick="playSound('nun')"><div class="lettre">ن</div><div class="nom">Nun</div></div>
-    <div class="card" onclick="playSound('ha2')"><div class="lettre">ه</div><div class="nom">Ha</div></div>
-    <div class="card" onclick="playSound('waw')"><div class="lettre">و</div><div class="nom">Waw</div></div>
-    <div class="card" onclick="playSound('ya')"><div class="lettre">ي</div><div class="nom">Ya</div></div>
-  </div>
-</div>
-<div id="voyelles" class="section">
-  <div class="voyelles">
-    <div class="card">
-      <div class="lettre">ا</div>
-      <span class="voyelle fatha">اَ</span>
-      <span class="voyelle damma">اُ</span>
-      <span class="voyelle kasra">اِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">ب</div>
-      <span class="voyelle fatha">بَ</span>
-      <span class="voyelle damma">بُ</span>
-      <span class="voyelle kasra">بِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">ت</div>
-      <span class="voyelle fatha">تَ</span>
-      <span class="voyelle damma">تُ</span>
-      <span class="voyelle kasra">تِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">ث</div>
-      <span class="voyelle fatha">ثَ</span>
-      <span class="voyelle damma">ثُ</span>
-      <span class="voyelle kasra">ثِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">ج</div>
-      <span class="voyelle fatha">جَ</span>
-      <span class="voyelle damma">جُ</span>
-      <span class="voyelle kasra">جِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">ح</div>
-      <span class="voyelle fatha">حَ</span>
-      <span class="voyelle damma">حُ</span>
-      <span class="voyelle kasra">حِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">خ</div>
-      <span class="voyelle fatha">خَ</span>
-      <span class="voyelle damma">خُ</span>
-      <span class="voyelle kasra">خِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">د</div>
-      <span class="voyelle fatha">دَ</span>
-      <span class="voyelle damma">دُ</span>
-      <span class="voyelle kasra">دِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">ذ</div>
-      <span class="voyelle fatha">ذَ</span>
-      <span class="voyelle damma">ذُ</span>
-      <span class="voyelle kasra">ذِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">ر</div>
-      <span class="voyelle fatha">رَ</span>
-      <span class="voyelle damma">رُ</span>
-      <span class="voyelle kasra">رِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">ز</div>
-      <span class="voyelle fatha">زَ</span>
-      <span class="voyelle damma">زُ</span>
-      <span class="voyelle kasra">زِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">س</div>
-      <span class="voyelle fatha">سَ</span>
-      <span class="voyelle damma">سُ</span>
-      <span class="voyelle kasra">سِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">ش</div>
-      <span class="voyelle fatha">شَ</span>
-      <span class="voyelle damma">شُ</span>
-      <span class="voyelle kasra">شِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">ص</div>
-      <span class="voyelle fatha">صَ</span>
-      <span class="voyelle damma">صُ</span>
-      <span class="voyelle kasra">صِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">ض</div>
-      <span class="voyelle fatha">ضَ</span>
-      <span class="voyelle damma">ضُ</span>
-      <span class="voyelle kasra">ضِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">ط</div>
-      <span class="voyelle fatha">طَ</span>
-      <span class="voyelle damma">طُ</span>
-      <span class="voyelle kasra">طِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">ظ</div>
-      <span class="voyelle fatha">ظَ</span>
-      <span class="voyelle damma">ظُ</span>
-      <span class="voyelle kasra">ظِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">ع</div>
-      <span class="voyelle fatha">عَ</span>
-      <span class="voyelle damma">عُ</span>
-      <span class="voyelle kasra">عِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">غ</div>
-      <span class="voyelle fatha">غَ</span>
-      <span class="voyelle damma">غُ</span>
-      <span class="voyelle kasra">غِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">ف</div>
-      <span class="voyelle fatha">فَ</span>
-      <span class="voyelle damma">فُ</span>
-      <span class="voyelle kasra">فِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">ق</div>
-      <span class="voyelle fatha">قَ</span>
-      <span class="voyelle damma">قُ</span>
-      <span class="voyelle kasra">قِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">ك</div>
-      <span class="voyelle fatha">كَ</span>
-      <span class="voyelle damma">كُ</span>
-      <span class="voyelle kasra">كِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">ل</div>
-      <span class="voyelle fatha">لَ</span>
-      <span class="voyelle damma">لُ</span>
-      <span class="voyelle kasra">لِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">م</div>
-      <span class="voyelle fatha">مَ</span>
-      <span class="voyelle damma">مُ</span>
-      <span class="voyelle kasra">مِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">ن</div>
-      <span class="voyelle fatha">نَ</span>
-      <span class="voyelle damma">نُ</span>
-      <span class="voyelle kasra">نِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">ه</div>
-      <span class="voyelle fatha">هَ</span>
-      <span class="voyelle damma">هُ</span>
-      <span class="voyelle kasra">هِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">و</div>
-      <span class="voyelle fatha">وَ</span>
-      <span class="voyelle damma">وُ</span>
-      <span class="voyelle kasra">وِ</span>
-    </div>
-    <div class="card">
-      <div class="lettre">ي</div>
-      <span class="voyelle fatha">يَ</span>
-      <span class="voyelle damma">يُ</span>
-      <span class="voyelle kasra">يِ</span>
+    <!-- Flèche → visible sur la section Alphabet uniquement -->
+    <div style="position: fixed; right: 10px; top: 50%; transform: translateY(-50%); z-index: 999;">
+      <button onclick="changerSection(1)" style="
+        background-color: #e74c3c;
+        border: none;
+        color: white;
+        font-size: 2rem;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        transition: background-color 0.3s;">
+        ➔
+      </button>
     </div>
   </div>
 
+  <div id="voyelles" class="section">
+    <div class="voyelles">
+      <div class="card">
+        <div class="lettre">ا</div>
+        <span class="voyelle fatha">اَ</span>
+        <span class="voyelle damma">اُ</span>
+        <span class="voyelle kasra">اِ</span>
+      </div>
+      <!-- ... ajoute les autres voyelles ici ... -->
+    </div>
 
-  
-  <div class="navigation">
-  <button class="nav-btn" onclick="changerSection(-1)">&lt;</button>
-  <button class="nav-btn" onclick="changerSection(1)">&gt;</button>
-</div>
-<div style="position: fixed; right: 10px; top: 50%; transform: translateY(-50%); z-index: 999;">
-  <button onclick="changerSection(1)" style="
-    background-color: #e74c3c;
-    border: none;
-    color: white;
-    font-size: 2rem;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    transition: background-color 0.3s;">
-    ➤
-  </button>
-</div>
+    <div class="navigation">
+      <button class="nav-btn" onclick="changerSection(-1)">&lt;</button>
+      <button class="nav-btn" onclick="changerSection(1)">&gt;</button>
+    </div>
+  </div>
 
-<script>
-let page = 0;
-const sections = ['alphabet', 'voyelles'];
-const titres = ['Alphabet Arabe', 'Voyelles en Arabe'];
+  <script>
+    let page = 0;
+    const sections = ['alphabet', 'voyelles'];
+    const titres = ['Alphabet Arabe', 'Voyelles en Arabe'];
 
-function changerSection(direction) {
-  document.getElementById(sections[page]).classList.remove('active');
-  page = (page + direction + sections.length) % sections.length;
-  document.getElementById(sections[page]).classList.add('active');
-  document.getElementById('titre').innerText = titres[page];
-}
+    function changerSection(direction) {
+      document.getElementById(sections[page]).classList.remove('active');
+      page = (page + direction + sections.length) % sections.length;
+      document.getElementById(sections[page]).classList.add('active');
+      document.getElementById('titre').innerText = titres[page];
+    }
 
-function playSound(lettre) {
-  const audio = new Audio(`sons/${lettre}.mp3`);
-  audio.play();
-}
-</script>
-
+    function playSound(lettre) {
+      const audio = new Audio(`sons/${lettre}.mp3`);
+      audio.play();
+    }
+  </script>
 </body>
 </html>
