@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz des Lettres Arabes</title>
+    <title>Quiz Progressif des Lettres Arabes</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -22,14 +22,22 @@
             padding: 40px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             text-align: center;
-            max-width: 500px;
+            max-width: 700px;
             width: 100%;
         }
         
         h1 {
             color: #4a5568;
             margin-bottom: 30px;
-            font-size: 2.5em;
+            font-size: 2.2em;
+        }
+        
+        .niveau-description {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #4299e1;
         }
         
         .niveau-btn {
@@ -39,10 +47,14 @@
             padding: 15px 30px;
             margin: 10px;
             border-radius: 25px;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+            display: block;
+            width: 90%;
+            max-width: 400px;
+            margin: 15px auto;
         }
         
         .niveau-btn:hover {
@@ -50,45 +62,130 @@
             box-shadow: 0 6px 20px rgba(72, 187, 120, 0.4);
         }
         
-        .niveau-btn.facile {
-            background: linear-gradient(45deg, #48bb78, #38a169);
-        }
-        
-        .niveau-btn.moyen {
-            background: linear-gradient(45deg, #ed8936, #dd6b20);
-        }
-        
-        .niveau-btn.difficile {
-            background: linear-gradient(45deg, #e53e3e, #c53030);
-        }
+        .niveau-btn.niveau1 { background: linear-gradient(45deg, #48bb78, #38a169); }
+        .niveau-btn.niveau2 { background: linear-gradient(45deg, #4299e1, #3182ce); }
+        .niveau-btn.niveau3 { background: linear-gradient(45deg, #ed8936, #dd6b20); }
+        .niveau-btn.niveau4 { background: linear-gradient(45deg, #e53e3e, #c53030); }
+        .niveau-btn.niveau5 { background: linear-gradient(45deg, #805ad5, #6b46c1); }
         
         #question {
-            font-size: 2em;
+            font-size: 1.8em;
             color: #2d3748;
             margin: 30px 0;
             font-weight: bold;
+            line-height: 1.6;
         }
         
-        .option-btn {
+        .arabic-text {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #2d3748;
+            margin: 20px 0;
+            line-height: 1.8;
+            direction: rtl;
+            text-align: center;
+        }
+        
+        .word-option {
             background: linear-gradient(45deg, #4299e1, #3182ce);
             color: white;
             border: none;
-            padding: 15px 25px;
+            padding: 15px 20px;
             margin: 8px;
             border-radius: 15px;
-            font-size: 24px;
+            font-size: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(66, 153, 225, 0.3);
+            direction: rtl;
         }
         
-        .option-btn:hover {
+        .word-option:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(66, 153, 225, 0.4);
         }
         
+        .letter-btn {
+            background: linear-gradient(45deg, #4299e1, #3182ce);
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            margin: 5px;
+            border-radius: 12px;
+            font-size: 22px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 50px;
+        }
+        
+        .letter-btn:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(45deg, #3182ce, #2c5aa0);
+        }
+        
+        .letter-btn.selected {
+            background: linear-gradient(45deg, #48bb78, #38a169);
+            transform: scale(1.1);
+        }
+        
+        .letter-btn.correct {
+            background: linear-gradient(45deg, #48bb78, #38a169);
+            animation: pulse 0.5s;
+        }
+        
+        .letter-btn.incorrect {
+            background: linear-gradient(45deg, #e53e3e, #c53030);
+            animation: shake 0.5s;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        .verse-text {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 1.8em;
+            line-height: 2;
+            direction: rtl;
+            border: 2px solid #e2e8f0;
+            margin: 20px 0;
+        }
+        
+        .verse-text span {
+            cursor: pointer;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .verse-text span:hover {
+            background: #bee3f8;
+        }
+        
+        .verse-text span.target-letter {
+            background: #48bb78;
+            color: white;
+            animation: highlight 0.5s;
+        }
+        
+        @keyframes highlight {
+            0% { background: #48bb78; }
+            50% { background: #68d391; }
+            100% { background: #48bb78; }
+        }
+        
         #resultat {
-            font-size: 1.5em;
+            font-size: 1.4em;
             margin: 20px 0;
             font-weight: bold;
             min-height: 40px;
@@ -99,6 +196,20 @@
             color: #2d3748;
             margin: 20px 0;
             font-weight: bold;
+        }
+        
+        .progress-bar {
+            background: #e2e8f0;
+            border-radius: 10px;
+            height: 20px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(45deg, #48bb78, #38a169);
+            height: 100%;
+            transition: width 0.5s ease;
         }
         
         .restart-btn {
@@ -115,7 +226,7 @@
         
         .restart-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(128, 90, 213, 0.4);
+            box-shadow: 0 6px 20px rgba128, 90, 213, 0.4);
         }
         
         .hidden {
@@ -130,142 +241,388 @@
             margin: 10px 0;
             font-weight: bold;
         }
+        
+        .instruction {
+            background: #e6fffa;
+            color: #234e52;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #38b2ac;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Menu principal -->
         <div id="menu">
-            <h1>🔤 Quiz des Lettres Arabes</h1>
-            <div>
-                <button class="niveau-btn facile" onclick="startGame('facile')">
-                    😊 Facile
-                </button>
-                <button class="niveau-btn moyen" onclick="startGame('moyen')">
-                    😐 Moyen
-                </button>
-                <button class="niveau-btn difficile" onclick="startGame('difficile')">
-                    😰 Difficile (7s)
-                </button>
-            </div>
+            <h1>🎓 Quiz Progressif des Lettres Arabes</h1>
+            
+            <button class="niveau-btn niveau1" onclick="startGame(1)">
+                <strong>Niveau 1 - Reconnaissance Simple</strong><br>
+                <small>Reconnaître la lettre parmi des options</small>
+            </button>
+            
+            <button class="niveau-btn niveau2" onclick="startGame(2)">
+                <strong>Niveau 2 - Lettres dans les Mots</strong><br>
+                <small>Trouver la lettre dans un mot simple</small>
+            </button>
+            
+            <button class="niveau-btn niveau3" onclick="startGame(3)">
+                <strong>Niveau 3 - Mots avec la Lettre</strong><br>
+                <small>Choisir le mot qui contient la lettre</small>
+            </button>
+            
+            <button class="niveau-btn niveau4" onclick="startGame(4)">
+                <strong>Niveau 4 - Phrases Simples</strong><br>
+                <small>Compter les lettres dans une phrase</small>
+            </button>
+            
+            <button class="niveau-btn niveau5" onclick="startGame(5)">
+                <strong>Niveau 5 - Versets Coraniques</strong><br>
+                <small>Identifier toutes les lettres dans un verset</small>
+            </button>
         </div>
         
         <!-- Écran de jeu -->
         <div id="jeu" class="hidden">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
             <div id="question"></div>
+            <div id="instruction" class="instruction"></div>
+            <div id="content"></div>
             <div id="options"></div>
             <div id="resultat"></div>
         </div>
         
         <!-- Écran de fin -->
         <div id="fin" class="hidden">
-            <h2>🎉 Fin du Quiz !</h2>
+            <h2>🎉 Bravo ! Quiz Terminé</h2>
             <div id="score"></div>
+            <div id="performance"></div>
             <button class="restart-btn" onclick="retourMenu()">
-                🔄 Rejouer
+                🔄 Choisir un autre niveau
             </button>
         </div>
     </div>
 
     <script>
         const lettres = ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ك', 'ل', 'م', 'ن', 'هـ', 'و', 'ي'];
-        let niveau = '';
+        
+        const motsSimples = {
+            'ا': ['أحمد', 'إسلام', 'أسد', 'أرض'],
+            'ب': ['بيت', 'باب', 'بحر', 'برج'],
+            'ت': ['تفاح', 'تمر', 'توت', 'تين'],
+            'م': ['مسجد', 'ماء', 'مدرسة', 'مكة'],
+            'ن': ['نور', 'نجم', 'نهر', 'نخل'],
+            'ل': ['ليل', 'لبن', 'لؤلؤ', 'لوز'],
+            'س': ['سلام', 'سماء', 'سيف', 'سفر'],
+            'ر': ['رسول', 'ريح', 'رمل', 'روح']
+        };
+        
+        const phrasesSimples = [
+            'الحمد لله رب العالمين',
+            'بسم الله الرحمن الرحيم',
+            'لا إله إلا الله محمد رسول الله',
+            'سبحان الله وبحمده',
+            'الله أكبر كبيرا',
+            'أستغفر الله العظيم'
+        ];
+        
+        const versetsCoran = [
+            'قُلْ هُوَ اللَّهُ أَحَدٌ',
+            'اللَّهُ الصَّمَدُ',
+            'لَمْ يَلِدْ وَلَمْ يُولَدْ',
+            'وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ',
+            'الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ',
+            'الرَّحْمَنِ الرَّحِيمِ'
+        ];
+        
+        let niveau = 0;
         let questions = [];
         let index = 0;
         let bonnesReponses = 0;
-        let timer = null;
+        let lettreActuelle = '';
+        let selectedLetters = [];
 
         function startGame(selectedNiveau) {
             niveau = selectedNiveau;
             document.getElementById('menu').classList.add('hidden');
             document.getElementById('jeu').classList.remove('hidden');
+            
             questions = [];
             index = 0;
             bonnesReponses = 0;
+            
             genererQuestions();
             afficherQuestion();
         }
 
         function genererQuestions() {
-            let copyLettres;
-            if (niveau === 'facile') {
-                copyLettres = ['ا', 'ب', 'ت', 'م', 'ن', 'و', 'ي', 'ل'];
-            } else if (niveau === 'moyen') {
-                copyLettres = ['س', 'ش', 'ص', 'ض', 'ذ', 'ز', 'ج', 'ح', 'خ', 'د'];
-            } else {
-                copyLettres = ['غ', 'ع', 'ط', 'ظ', 'ق', 'ك', 'هـ', 'ف'];
-            }
+            const lettresNiveau = niveau <= 2 ? 
+                ['ا', 'ب', 'ت', 'م', 'ن', 'ل', 'س', 'ر'] : 
+                lettres.slice(0, 15);
             
-            while (questions.length < 8 && copyLettres.length > 0) {
-                const i = Math.floor(Math.random() * copyLettres.length);
-                questions.push(copyLettres.splice(i, 1)[0]);
+            for (let i = 0; i < 8; i++) {
+                const lettre = lettresNiveau[Math.floor(Math.random() * lettresNiveau.length)];
+                questions.push(lettre);
             }
-        }
-
-        function genererOptions(correct) {
-            let opts = [correct];
-            let lettresRestantes = lettres.filter(l => l !== correct);
-            let nbOptions = niveau === 'difficile' ? 5 : 4;
-            
-            while (opts.length < nbOptions && lettresRestantes.length > 0) {
-                const l = lettresRestantes.splice(Math.floor(Math.random() * lettresRestantes.length), 1)[0];
-                if (!opts.includes(l)) opts.push(l);
-            }
-            
-            return opts.sort(() => Math.random() - 0.5);
         }
 
         function afficherQuestion() {
-            if (timer !== null) clearTimeout(timer);
-            
             if (index >= questions.length) {
                 afficherScore();
                 return;
             }
             
+            updateProgress();
             document.getElementById('resultat').innerText = '';
-            const question = questions[index];
-            document.getElementById('question').innerText = `Trouve la lettre : ${question}`;
+            lettreActuelle = questions[index];
             
-            const options = genererOptions(question);
-            document.getElementById('options').innerHTML = '';
-            
-            options.forEach(opt => {
-                const btn = document.createElement('button');
-                btn.innerText = opt;
-                btn.className = 'option-btn';
-                btn.onclick = () => {
-                    if (timer !== null) clearTimeout(timer);
-                    verifierReponse(opt, question);
-                };
-                document.getElementById('options').appendChild(btn);
-            });
-            
-            if (niveau === 'difficile') {
-                timer = setTimeout(() => {
-                    document.getElementById('resultat').innerText = '⏰ Temps écoulé !';
-                    index++;
-                    setTimeout(afficherQuestion, 1500);
-                }, 7000);
+            switch(niveau) {
+                case 1:
+                    afficherNiveau1();
+                    break;
+                case 2:
+                    afficherNiveau2();
+                    break;
+                case 3:
+                    afficherNiveau3();
+                    break;
+                case 4:
+                    afficherNiveau4();
+                    break;
+                case 5:
+                    afficherNiveau5();
+                    break;
             }
         }
 
-        function verifierReponse(selected, correct) {
-            if (selected === correct) {
-                bonnesReponses++;
-                document.getElementById('resultat').innerText = '✅ Correct !';
-            } else {
-                document.getElementById('resultat').innerText = '❌ Incorrect !';
+        function afficherNiveau1() {
+            document.getElementById('question').innerHTML = `Trouve la lettre : <span style="color: #e53e3e; font-size: 1.2em;">${lettreActuelle}</span>`;
+            document.getElementById('instruction').innerText = 'Clique sur la bonne lettre parmi les options';
+            document.getElementById('content').innerHTML = '';
+            
+            const options = genererOptionsLettres(lettreActuelle);
+            let optionsHtml = '';
+            options.forEach(opt => {
+                optionsHtml += `<button class="letter-btn" onclick="verifierNiveau1('${opt}')">${opt}</button>`;
+            });
+            document.getElementById('options').innerHTML = optionsHtml;
+        }
+
+        function afficherNiveau2() {
+            const motsAvecLettre = motsSimples[lettreActuelle] || [`م${lettreActuelle}ثال`, `كت${lettreActuelle}ب`];
+            const motChoisi = motsAvecLettre[Math.floor(Math.random() * motsAvecLettre.length)];
+            
+            document.getElementById('question').innerHTML = `Trouve toutes les lettres "<span style="color: #e53e3e;">${lettreActuelle}</span>" dans ce mot :`;
+            document.getElementById('instruction').innerText = 'Clique sur chaque lettre dans le mot';
+            document.getElementById('content').innerHTML = `<div class="arabic-text">${creerMotCliquable(motChoisi, lettreActuelle)}</div>`;
+            document.getElementById('options').innerHTML = '<button class="restart-btn" onclick="validerNiveau2()">✓ Valider ma sélection</button>';
+            
+            selectedLetters = [];
+        }
+
+        function afficherNiveau3() {
+            const motsAvec = motsSimples[lettreActuelle] || [`كت${lettreActuelle}ب`];
+            const motCorrect = motsAvec[Math.floor(Math.random() * motsAvec.length)];
+            
+            const autresMots = ['كتاب', 'قلم', 'شمس', 'قمر'].filter(m => !m.includes(lettreActuelle));
+            const options = [motCorrect, ...autresMots.slice(0, 3)].sort(() => Math.random() - 0.5);
+            
+            document.getElementById('question').innerHTML = `Quel mot contient la lettre "<span style="color: #e53e3e;">${lettreActuelle}</span>" ?`;
+            document.getElementById('instruction').innerText = 'Choisis le mot qui contient la lettre demandée';
+            document.getElementById('content').innerHTML = '';
+            
+            let optionsHtml = '';
+            options.forEach(mot => {
+                optionsHtml += `<button class="word-option" onclick="verifierNiveau3('${mot}', '${motCorrect}')">${mot}</button>`;
+            });
+            document.getElementById('options').innerHTML = optionsHtml;
+        }
+
+        function afficherNiveau4() {
+            const phrase = phrasesSimples[Math.floor(Math.random() * phrasesSimples.length)];
+            const count = compterLettres(phrase, lettreActuelle);
+            
+            document.getElementById('question').innerHTML = `Combien de fois la lettre "<span style="color: #e53e3e;">${lettreActuelle}</span>" apparaît-elle ?`;
+            document.getElementById('instruction').innerText = 'Compte bien toutes les occurrences de la lettre';
+            document.getElementById('content').innerHTML = `<div class="verse-text">${phrase}</div>`;
+            
+            const options = [count, count+1, count-1, count+2].filter(n => n >= 0).sort(() => Math.random() - 0.5);
+            let optionsHtml = '';
+            options.forEach(num => {
+                optionsHtml += `<button class="letter-btn" onclick="verifierNiveau4(${num}, ${count})">${num}</button>`;
+            });
+            document.getElementById('options').innerHTML = optionsHtml;
+        }
+
+        function afficherNiveau5() {
+            const verset = versetsCoran[Math.floor(Math.random() * versetsCoran.length)];
+            
+            document.getElementById('question').innerHTML = `Trouve toutes les lettres "<span style="color: #e53e3e;">${lettreActuelle}</span>" dans ce verset :`;
+            document.getElementById('instruction').innerText = 'Clique sur chaque occurrence de la lettre dans le verset';
+            document.getElementById('content').innerHTML = `<div class="verse-text">${creerVersetCliquable(verset, lettreActuelle)}</div>`;
+            document.getElementById('options').innerHTML = '<button class="restart-btn" onclick="validerNiveau5()">✓ Terminer</button>';
+            
+            selectedLetters = [];
+        }
+
+        function genererOptionsLettres(correct) {
+            let opts = [correct];
+            let lettresRestantes = lettres.filter(l => l !== correct);
+            
+            while (opts.length < 4 && lettresRestantes.length > 0) {
+                const l = lettresRestantes.splice(Math.floor(Math.random() * lettresRestantes.length), 1)[0];
+                opts.push(l);
             }
             
-            index++;
-            setTimeout(afficherQuestion, 1000);
+            return opts.sort(() => Math.random() - 0.5);
+        }
+
+        function creerMotCliquable(mot, lettreCible) {
+            return mot.split('').map((lettre, i) => 
+                `<span onclick="toggleLetter(${i}, '${lettre}', '${lettreCible}')" id="letter-${i}">${lettre}</span>`
+            ).join('');
+        }
+
+        function creerVersetCliquable(verset, lettreCible) {
+            return verset.split('').map((char, i) => {
+                if (char === ' ') return ' ';
+                return `<span onclick="toggleVersetLetter(${i}, '${char}', '${lettreCible}')" id="verset-${i}">${char}</span>`;
+            }).join('');
+        }
+
+        function toggleLetter(index, lettre, lettreCible) {
+            const element = document.getElementById(`letter-${index}`);
+            
+            if (lettre === lettreCible) {
+                if (selectedLetters.includes(index)) {
+                    selectedLetters = selectedLetters.filter(i => i !== index);
+                    element.classList.remove('selected');
+                } else {
+                    selectedLetters.push(index);
+                    element.classList.add('selected');
+                }
+            }
+        }
+
+        function toggleVersetLetter(index, char, lettreCible) {
+            const element = document.getElementById(`verset-${index}`);
+            
+            if (char === lettreCible) {
+                if (selectedLetters.includes(index)) {
+                    selectedLetters = selectedLetters.filter(i => i !== index);
+                    element.classList.remove('target-letter');
+                } else {
+                    selectedLetters.push(index);
+                    element.classList.add('target-letter');
+                }
+            }
+        }
+
+        function compterLettres(texte, lettre) {
+            return texte.split('').filter(c => c === lettre).length;
+        }
+
+        function verifierNiveau1(selected) {
+            if (selected === lettreActuelle) {
+                bonnesReponses++;
+                document.getElementById('resultat').innerText = '✅ Excellent !';
+            } else {
+                document.getElementById('resultat').innerText = '❌ Ce n\'est pas la bonne lettre';
+            }
+            
+            setTimeout(() => {
+                index++;
+                afficherQuestion();
+            }, 1500);
+        }
+
+        function validerNiveau2() {
+            const motElement = document.querySelector('.arabic-text');
+            const motTexte = motElement.innerText;
+            const nombreCorrect = compterLettres(motTexte, lettreActuelle);
+            
+            if (selectedLetters.length === nombreCorrect) {
+                bonnesReponses++;
+                document.getElementById('resultat').innerText = '✅ Parfait ! Toutes les lettres trouvées !';
+            } else {
+                document.getElementById('resultat').innerText = `❌ Il y a ${nombreCorrect} lettres "${lettreActuelle}" dans ce mot`;
+            }
+            
+            setTimeout(() => {
+                index++;
+                afficherQuestion();
+            }, 2000);
+        }
+
+        function verifierNiveau3(selected, correct) {
+            if (selected === correct) {
+                bonnesReponses++;
+                document.getElementById('resultat').innerText = '✅ Bonne réponse !';
+            } else {
+                document.getElementById('resultat').innerText = `❌ Le bon mot était : ${correct}`;
+            }
+            
+            setTimeout(() => {
+                index++;
+                afficherQuestion();
+            }, 1500);
+        }
+
+        function verifierNiveau4(selected, correct) {
+            if (selected === correct) {
+                bonnesReponses++;
+                document.getElementById('resultat').innerText = `✅ Exact ! Il y a ${correct} lettres "${lettreActuelle}"`;
+            } else {
+                document.getElementById('resultat').innerText = `❌ Il y a ${correct} lettres "${lettreActuelle}" dans cette phrase`;
+            }
+            
+            setTimeout(() => {
+                index++;
+                afficherQuestion();
+            }, 2000);
+        }
+
+        function validerNiveau5() {
+            const versetElement = document.querySelector('.verse-text');
+            const versetTexte = versetElement.innerText;
+            const nombreCorrect = compterLettres(versetTexte, lettreActuelle);
+            
+            if (selectedLetters.length === nombreCorrect) {
+                bonnesReponses++;
+                document.getElementById('resultat').innerText = '✅ Mashallah ! Toutes les lettres identifiées !';
+            } else {
+                document.getElementById('resultat').innerText = `❌ Il y a ${nombreCorrect} lettres "${lettreActuelle}" dans ce verset`;
+            }
+            
+            setTimeout(() => {
+                index++;
+                afficherQuestion();
+            }, 2500);
+        }
+
+        function updateProgress() {
+            const progress = (index / questions.length) * 100;
+            document.getElementById('progress').style.width = progress + '%';
         }
 
         function afficherScore() {
             document.getElementById('jeu').classList.add('hidden');
             document.getElementById('fin').classList.remove('hidden');
-            document.getElementById('score').innerText = `Ton score : ${bonnesReponses} / 8`;
+            
+            const pourcentage = Math.round((bonnesReponses / questions.length) * 100);
+            document.getElementById('score').innerText = `Score : ${bonnesReponses} / ${questions.length} (${pourcentage}%)`;
+            
+            let performance = '';
+            if (pourcentage >= 90) performance = '🏆 Excellent ! Maîtrise parfaite !';
+            else if (pourcentage >= 75) performance = '🥇 Très bien ! Continue comme ça !';
+            else if (pourcentage >= 60) performance = '🥉 Bien ! Tu progresses !';
+            else performance = '💪 Continue à t\'entraîner !';
+            
+            document.getElementById('performance').innerHTML = `<div style="font-size: 1.2em; margin-top: 20px;">${performance}</div>`;
         }
 
         function retourMenu() {
