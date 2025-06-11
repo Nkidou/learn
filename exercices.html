@@ -1,101 +1,277 @@
-<script>
-const lettres = ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ك', 'ل', 'م', 'ن', 'هـ', 'و', 'ي'];
-let niveau = '';
-let questions = [];
-let index = 0;
-let bonnesReponses = 0;
-let timer; // pour le chrono
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz des Lettres Arabes</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #4a5568;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .niveau-btn {
+            background: linear-gradient(45deg, #48bb78, #38a169);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+        }
+        
+        .niveau-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(72, 187, 120, 0.4);
+        }
+        
+        .niveau-btn.facile {
+            background: linear-gradient(45deg, #48bb78, #38a169);
+        }
+        
+        .niveau-btn.moyen {
+            background: linear-gradient(45deg, #ed8936, #dd6b20);
+        }
+        
+        .niveau-btn.difficile {
+            background: linear-gradient(45deg, #e53e3e, #c53030);
+        }
+        
+        #question {
+            font-size: 2em;
+            color: #2d3748;
+            margin: 30px 0;
+            font-weight: bold;
+        }
+        
+        .option-btn {
+            background: linear-gradient(45deg, #4299e1, #3182ce);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            margin: 8px;
+            border-radius: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(66, 153, 225, 0.3);
+        }
+        
+        .option-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(66, 153, 225, 0.4);
+        }
+        
+        #resultat {
+            font-size: 1.5em;
+            margin: 20px 0;
+            font-weight: bold;
+            min-height: 40px;
+        }
+        
+        #score {
+            font-size: 2em;
+            color: #2d3748;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        
+        .restart-btn {
+            background: linear-gradient(45deg, #805ad5, #6b46c1);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(128, 90, 213, 0.3);
+        }
+        
+        .restart-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(128, 90, 213, 0.4);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .timer {
+            background: #fed7d7;
+            color: #c53030;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Menu principal -->
+        <div id="menu">
+            <h1>🔤 Quiz des Lettres Arabes</h1>
+            <div>
+                <button class="niveau-btn facile" onclick="startGame('facile')">
+                    😊 Facile
+                </button>
+                <button class="niveau-btn moyen" onclick="startGame('moyen')">
+                    😐 Moyen
+                </button>
+                <button class="niveau-btn difficile" onclick="startGame('difficile')">
+                    😰 Difficile (7s)
+                </button>
+            </div>
+        </div>
+        
+        <!-- Écran de jeu -->
+        <div id="jeu" class="hidden">
+            <div id="question"></div>
+            <div id="options"></div>
+            <div id="resultat"></div>
+        </div>
+        
+        <!-- Écran de fin -->
+        <div id="fin" class="hidden">
+            <h2>🎉 Fin du Quiz !</h2>
+            <div id="score"></div>
+            <button class="restart-btn" onclick="retourMenu()">
+                🔄 Rejouer
+            </button>
+        </div>
+    </div>
 
-function startGame(selectedNiveau) {
-  niveau = selectedNiveau;
-  document.getElementById('menu').style.display = 'none';
-  document.getElementById('jeu').style.display = 'block';
-  questions = []; // réinitialiser les questions
-  index = 0;
-  bonnesReponses = 0;
-  genererQuestions();
-  afficherQuestion();
-}
+    <script>
+        const lettres = ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ك', 'ل', 'م', 'ن', 'هـ', 'و', 'ي'];
+        let niveau = '';
+        let questions = [];
+        let index = 0;
+        let bonnesReponses = 0;
+        let timer = null;
 
-function genererQuestions() {
-  let copyLettres;
+        function startGame(selectedNiveau) {
+            niveau = selectedNiveau;
+            document.getElementById('menu').classList.add('hidden');
+            document.getElementById('jeu').classList.remove('hidden');
+            questions = [];
+            index = 0;
+            bonnesReponses = 0;
+            genererQuestions();
+            afficherQuestion();
+        }
 
-  if (niveau === 'facile') {
-    copyLettres = ['ا', 'ب', 'ت', 'م', 'ن', 'و', 'ي', 'ل'];
-  } else if (niveau === 'moyen') {
-    copyLettres = ['س', 'ش', 'ص', 'ض', 'ذ', 'ز', 'ج', 'ح', 'خ', 'د'];
-  } else {
-    copyLettres = ['غ', 'ع', 'ط', 'ظ', 'ق', 'ك', 'هـ', 'ف'];
-  }
+        function genererQuestions() {
+            let copyLettres;
+            if (niveau === 'facile') {
+                copyLettres = ['ا', 'ب', 'ت', 'م', 'ن', 'و', 'ي', 'ل'];
+            } else if (niveau === 'moyen') {
+                copyLettres = ['س', 'ش', 'ص', 'ض', 'ذ', 'ز', 'ج', 'ح', 'خ', 'د'];
+            } else {
+                copyLettres = ['غ', 'ع', 'ط', 'ظ', 'ق', 'ك', 'هـ', 'ف'];
+            }
+            
+            while (questions.length < 8 && copyLettres.length > 0) {
+                const i = Math.floor(Math.random() * copyLettres.length);
+                questions.push(copyLettres.splice(i, 1)[0]);
+            }
+        }
 
-  while (questions.length < 8 && copyLettres.length > 0) {
-    const i = Math.floor(Math.random() * copyLettres.length);
-    questions.push(copyLettres.splice(i, 1)[0]);
-  }
-}
+        function genererOptions(correct) {
+            let opts = [correct];
+            let lettresRestantes = lettres.filter(l => l !== correct);
+            let nbOptions = niveau === 'difficile' ? 5 : 4;
+            
+            while (opts.length < nbOptions && lettresRestantes.length > 0) {
+                const l = lettresRestantes.splice(Math.floor(Math.random() * lettresRestantes.length), 1)[0];
+                if (!opts.includes(l)) opts.push(l);
+            }
+            
+            return opts.sort(() => Math.random() - 0.5);
+        }
 
-function genererOptions(correct) {
-  let opts = [correct];
-  let lettresRestantes = lettres.filter(l => l !== correct);
-  let nbOptions = niveau === 'difficile' ? 5 : 4;
+        function afficherQuestion() {
+            if (timer !== null) clearTimeout(timer);
+            
+            if (index >= questions.length) {
+                afficherScore();
+                return;
+            }
+            
+            document.getElementById('resultat').innerText = '';
+            const question = questions[index];
+            document.getElementById('question').innerText = `Trouve la lettre : ${question}`;
+            
+            const options = genererOptions(question);
+            document.getElementById('options').innerHTML = '';
+            
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.innerText = opt;
+                btn.className = 'option-btn';
+                btn.onclick = () => {
+                    if (timer !== null) clearTimeout(timer);
+                    verifierReponse(opt, question);
+                };
+                document.getElementById('options').appendChild(btn);
+            });
+            
+            if (niveau === 'difficile') {
+                timer = setTimeout(() => {
+                    document.getElementById('resultat').innerText = '⏰ Temps écoulé !';
+                    index++;
+                    setTimeout(afficherQuestion, 1500);
+                }, 7000);
+            }
+        }
 
-  while (opts.length < nbOptions) {
-    const l = lettresRestantes.splice(Math.floor(Math.random() * lettresRestantes.length), 1)[0];
-    if (!opts.includes(l)) opts.push(l);
-  }
+        function verifierReponse(selected, correct) {
+            if (selected === correct) {
+                bonnesReponses++;
+                document.getElementById('resultat').innerText = '✅ Correct !';
+            } else {
+                document.getElementById('resultat').innerText = '❌ Incorrect !';
+            }
+            
+            index++;
+            setTimeout(afficherQuestion, 1000);
+        }
 
-  return opts.sort(() => Math.random() - 0.5);
-}
+        function afficherScore() {
+            document.getElementById('jeu').classList.add('hidden');
+            document.getElementById('fin').classList.remove('hidden');
+            document.getElementById('score').innerText = `Ton score : ${bonnesReponses} / 8`;
+        }
 
-function afficherQuestion() {
-  clearTimeout(timer);
-  if (index >= questions.length) {
-    afficherScore();
-    return;
-  }
-
-  document.getElementById('resultat').innerText = '';
-  const question = questions[index];
-  document.getElementById('question').innerText = `Trouve la lettre : ${question}`;
-
-  const options = genererOptions(question);
-  document.getElementById('options').innerHTML = '';
-  options.forEach(opt => {
-    const btn = document.createElement('button');
-    btn.innerText = opt;
-    btn.className = 'option-btn';
-    btn.onclick = () => {
-      clearTimeout(timer);
-      verifierReponse(opt, question);
-    };
-    document.getElementById('options').appendChild(btn);
-  });
-
-  if (niveau === 'difficile') {
-    // chrono 7 secondes
-    timer = setTimeout(() => {
-      document.getElementById('resultat').innerText = '⏰ Temps écoulé !';
-      index++;
-      setTimeout(afficherQuestion, 1500);
-    }, 7000);
-  }
-}
-
-function verifierReponse(selected, correct) {
-  if (selected === correct) {
-    bonnesReponses++;
-    document.getElementById('resultat').innerText = '✅ Correct !';
-  } else {
-    document.getElementById('resultat').innerText = '❌ Incorrect !';
-  }
-  index++;
-  setTimeout(afficherQuestion, 1000);
-}
-
-function afficherScore() {
-  document.getElementById('jeu').style.display = 'none';
-  document.getElementById('fin').style.display = 'block';
-  document.getElementById('score').innerText = `Ton score : ${bonnesReponses} / 8`;
-}
-</script>
-
+        function retourMenu() {
+            document.getElementById('fin').classList.add('hidden');
+            document.getElementById('menu').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
