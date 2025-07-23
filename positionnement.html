@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Positionnement des lettres arabes</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+      direction: rtl;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #fff;
+    }
+    
+    .retour-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #333;
+      border: none;
+      padding: 15px 25px;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 100;
+      text-decoration: none;
+    }
+    
+    .retour-btn:hover {
+      background-color: #fff;
+      transform: scale(1.05);
+    }
+    
+    .lettres-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .lettre-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+    
+    .lettre-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .lettre-titre {
+      text-align: center;
+      color: #333;
+      font-size: 2rem;
+      margin-bottom: 25px;
+      border-bottom: 3px solid #667eea;
+      padding-bottom: 10px;
+    }
+    
+    .positions {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .position {
+      text-align: center;
+      flex: 1;
+    }
+    
+    .position-label {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    
+    .position-lettre {
+      font-size: 3rem;
+      color: #e74c3c;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    
+    .position-lettre:hover {
+      background-color: #f8f9fa;
+      transform: scale(1.1);
+    }
+    
+    .exemple {
+      background-color: #f8f9fa;
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 20px;
+      text-align: center;
+    }
+    
+    .exemple-titre {
+      color: #333;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+    
+    .mot-exemple {
+      font-size: 2.5rem;
+      color: #2c3e50;
+      margin: 10px 0;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    
+    .mot-exemple:hover {
+      color: #e74c3c;
+    }
+    
+    .traduction {
+      color: #666;
+      font-size: 1rem;
+      font-style: italic;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="retour-btn">← Retour au menu</a>
+  
+  <div class="header">
+    <h1>أشكال الحروف العربية</h1>
+    <h2>Formes des lettres selon leur position</h2>
+  </div>
+
+  <div class="lettres-container">
+    <!-- Lettre ب -->
+    <div class="lettre-card">
+      <div class="lettre-titre">ب - Ba</div>
+      <div class="positions">
+        <div class="position">
+          <div class="position-label">منفصلة<br>(Isolée)</div>
+          <div class="position-lettre" onclick="playSound('ba')">ب</div>
+        </div>
+        <div class="position">
+          <div class="position-label">أول<br>(Début)</div>
+          <div class="position-lettre" onclick="playSound('ba')">بـ</div>
+        </div>
+        <div class="position">
+          <div class="position-label">وسط<br>(Milieu)</div>
+          <div class="position-lettre" onclick="playSound('ba')">ـبـ</div>
+        </div>
+        <div class="position">
+          <div class="position-label">آخر<br>(Fin)</div>
+          <div class="position-lettre" onclick="playSound('ba')">ـب</div>
+        </div>
+      </div>
+      <div class="exemple">
+        <div class="exemple-titre">أمثلة - Exemples</div>
+        <div class="mot-exemple" onclick="playSound('bab')">باب</div>
+        <div class="traduction">porte</div>
+      </div>
+    </div>
+
+    <!-- Lettre ت -->
+    <div class="lettre-card">
+      <div class="lettre-titre">ت - Ta</div>
+      <div class="positions">
+        <div class="position">
+          <div class="position-label">منفصلة<br>(Isolée)</div>
+          <div class="position-lettre" onclick="playSound('ta')">ت</div>
+        </div>
+        <div class="position">
+          <div class="position-label">أول<br>(Début)</div>
+          <div class="position-lettre" onclick="playSound('ta')">تـ</div>
+        </div>
+        <div class="position">
+          <div class="position-label">وسط<br>(Milieu)</div>
+          <div class="position-lettre" onclick="playSound('ta')">ـتـ</div>
+        </div>
+        <div class="position">
+          <div class="position-label">آخر<br>(Fin)</div>
+          <div class="position-lettre" onclick="playSound('ta')">ـت</div>
+        </div>
+      </div>
+      <div class="exemple">
+        <div class="exemple-titre">أمثلة - Exemples</div>
+        <div class="mot-exemple" onclick="playSound('tut')">توت</div>
+        <div class="traduction">mûre</div>
+      </div>
+    </div>
+
+    <!-- Lettre ج -->
+    <div class="lettre-card">
+      <div class="lettre-titre">ج - Jim</div>
+      <div class="positions">
+        <div class="position">
+          <div class="position-label">منفصلة<br>(Isolée)</div>
+          <div class="position-lettre" onclick="playSound('jim')">ج</div>
+        </div>
+        <div class="position">
+          <div class="position-label">أول<br>(Début)</div>
+          <div class="position-lettre" onclick="playSound('jim')">جـ</div>
+        </div>
+        <div class="position">
+          <div class="position-label">وسط<br>(Milieu)</div>
+          <div class="position-lettre" onclick="playSound('jim')">ـجـ</div>
+        </div>
+        <div class="position">
+          <div class="position-label">آخر<br>(Fin)</div>
+          <div class="position-lettre" onclick="playSound('jim')">ـج</div>
+        </div>
+      </div>
+      <div class="exemple">
+        <div class="exemple-titre">أمثلة - Exemples</div>
+        <div class="mot-exemple" onclick="playSound('jamal')">جمل</div>
+        <div class="traduction">chameau</div>
+      </div>
+    </div>
+
+    <!-- Lettre س -->
+    <div class="lettre-card">
+      <div class="lettre-titre">س - Sin</div>
+      <div class="positions">
+        <div class="position">
+          <div class="position-label">منفصلة<br>(Isolée)</div>
+          <div class="position-lettre" onclick="playSound('sin')">س</div>
+        </div>
+        <div class="position">
+          <div class="position-label">أول<br>(Début)</div>
+          <div class="position-lettre" onclick="playSound('sin')">سـ</div>
+        </div>
+        <div class="position">
+          <div class="position-label">وسط<br>(Milieu)</div>
+          <div class="position-lettre" onclick="playSound('sin')">ـسـ</div>
+        </div>
+        <div class="position">
+          <div class="position-label">آخر<br>(Fin)</div>
+          <div class="position-lettre" onclick="playSound('sin')">ـس</div>
+        </div>
+      </div>
+      <div class="exemple">
+        <div class="exemple-titre">أمثلة - Exemples</div>
+        <div class="mot-exemple" onclick="playSound('shams')">شمس</div>
+        <div class="traduction">soleil</div>
+      </div>
+    </div>
+
+    <!-- Lettre م -->
+    <div class="lettre-card">
+      <div class="lettre-titre">م - Mim</div>
+      <div class="positions">
+        <div class="position">
+          <div class="position-label">منفصلة<br>(Isolée)</div>
+          <div class="position-lettre" onclick="playSound('mim')">م</div>
+        </div>
+        <div class="position">
+          <div class="position-label">أول<br>(Début)</div>
+          <div class="position-lettre" onclick="playSound('mim')">مـ</div>
+        </div>
+        <div class="position">
+          <div class="position-label">وسط<br>(Milieu)</div>
+          <div class="position-lettre" onclick="playSound('mim')">ـمـ</div>
+        </div>
+        <div class="position">
+          <div class="position-label">آخر<br>(Fin)</div>
+          <div class="position-lettre" onclick="playSound('mim')">ـم</div>
+        </div>
+      </div>
+      <div class="exemple">
+        <div class="exemple-titre">أمثلة - Exemples</div>
+        <div class="mot-exemple" onclick="playSound('maa')">ماء</div>
+        <div class="traduction">eau</div>
+      </div>
+    </div>
+
+    <!-- Lettre ل -->
+    <div class="lettre-card">
+      <div class="lettre-titre">ل - Lam</div>
+      <div class="positions">
+        <div class="position">
+          <div class="position-label">منفصلة<br>(Isolée)</div>
+          <div class="position-lettre" onclick="playSound('lam')">ل</div>
+        </div>
+        <div class="position">
+          <div class="position-label">أول<br>(Début)</div>
+          <div class="position-lettre" onclick="playSound('lam')">لـ</div>
+        </div>
+        <div class="position">
+          <div class="position-label">وسط<br>(Milieu)</div>
+          <div class="position-lettre" onclick="playSound('lam')">ـلـ</div>
+        </div>
+        <div class="position">
+          <div class="position-label">آخر<br>(Fin)</div>
+          <div class="position-lettre" onclick="playSound('lam')">ـل</div>
+        </div>
+      </div>
+      <div class="exemple">
+        <div class="exemple-titre">أمثلة - Exemples</div>
+        <div class="mot-exemple" onclick="playSound('layl')">ليل</div>
+        <div class="traduction">nuit</div>
+      </div>
+    </div>
+
+    <!-- Lettre ك -->
+    <div class="lettre-card">
+      <div class="lettre-titre">ك - Kaf</div>
+      <div class="positions">
+        <div class="position">
+          <div class="position-label">منفصلة<br>(Isolée)</div>
+          <div class="position-lettre" onclick="playSound('kaf')">ك</div>
+        </div>
+        <div class="position">
+          <div class="position-label">أول<br>(Début)</div>
+          <div class="position-lettre" onclick="playSound('kaf')">كـ</div>
+        </div>
+        <div class="position">
+          <div class="position-label">وسط<br>(Milieu)</div>
+          <div class="position-lettre" onclick="playSound('kaf')">ـكـ</div>
+        </div>
+        <div class="position">
+          <div class="position-label">آخر<br>(Fin)</div>
+          <div class="position-lettre" onclick="playSound('kaf')">ـك</div>
+        </div>
+      </div>
+      <div class="exemple">
+        <div class="exemple-titre">أمثلة - Exemples</div>
+        <div class="mot-exemple" onclick="playSound('kitab')">كتاب</div>
+        <div class="traduction">livre</div>
+      </div>
+    </div>
+
+    <!-- Lettre ف -->
+    <div class="lettre-card">
+      <div class="lettre-titre">ف - Fa</div>
+      <div class="positions">
+        <div class="position">
+          <div class="position-label">منفصلة<br>(Isolée)</div>
+          <div class="position-lettre" onclick="playSound('fa')">ف</div>
+        </div>
+        <div class="position">
+          <div class="position-label">أول<br>(Début)</div>
+          <div class="position-lettre" onclick="playSound('fa')">فـ</div>
+        </div>
+        <div class="position">
+          <div class="position-label">وسط<br>(Milieu)</div>
+          <div class="position-lettre" onclick="playSound('fa')">ـفـ</div>
+        </div>
+        <div class="position">
+          <div class="position-label">آخر<br>(Fin)</div>
+          <div class="position-lettre" onclick="playSound('fa')">ـف</div>
+        </div>
+      </div>
+      <div class="exemple">
+        <div class="exemple-titre">أمثلة - Exemples</div>
+        <div class="mot-exemple" onclick="playSound('fil')">فيل</div>
+        <div class="traduction">éléphant</div>
+      </div>
+    </div>
+
+    <!-- Lettre ع -->
+    <div class="lettre-card">
+      <div class="lettre-titre">ع - Ayn</div>
+      <div class="positions">
+        <div class="position">
+          <div class="position-label">منفصلة<br>(Isolée)</div>
+          <div class="position-lettre" onclick="playSound('ayn')">ع</div>
+        </div>
+        <div class="position">
+          <div class="position-label">أول<br>(Début)</div>
+          <div class="position-lettre" onclick="playSound('ayn')">عـ</div>
+        </div>
+        <div class="position">
+          <div class="position-label">وسط<br>(Milieu)</div>
+          <div class="position-lettre" onclick="playSound('ayn')">ـعـ</div>
+        </div>
+        <div class="position">
+          <div class="position-label">آخر<br>(Fin)</div>
+          <div class="position-lettre" onclick="playSound('ayn')">ـع</div>
+        </div>
+      </div>
+      <div class="exemple">
+        <div class="exemple-titre">أمثلة - Exemples</div>
+        <div class="mot-exemple" onclick="playSound('ayn')">عين</div>
+        <div class="traduction">œil</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function playSound(lettre) {
+      const audio = new Audio(`sons/${lettre}.mp3`);
+      audio.play();
+    }
+  </script>
+</body>
+</html>
